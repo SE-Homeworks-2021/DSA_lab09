@@ -19,7 +19,7 @@ public class TestingEZ {
         return data;
     }
 
-    public static void loopNgoNgo(Command command) {
+    public static void loopNgoNgo(Command command,String name) {
         for (int i = 1; i <= 5; i++) {
             int j = 0;
 
@@ -35,7 +35,19 @@ public class TestingEZ {
                 j = 100_000;
             }
 
-            command.execute(j);
+            int random_num = j;
+
+            int[] array = ranPong(random_num);
+            System.out.println(name + " : " + random_num);
+
+            long startTime = System.currentTimeMillis();
+
+            command.execute(array);
+
+            long endTime = System.currentTimeMillis();
+
+            System.out.println("Elapsed time = " + (endTime - startTime));
+            System.out.println();
 
         }
 
@@ -47,79 +59,48 @@ public class TestingEZ {
     }
 
     public static class BubbleSortingTest implements Command {
+
         public void execute(Object data) {
-            int random_num = (int) data;
 
-            int[] array = ranPong(random_num);
-            System.out.println("Bubble Sort : " + random_num);
+            BubbleSorting.bubbleSort((int[]) data);
 
-            long startTime = System.currentTimeMillis();
-            BubbleSorting.bubbleSort(array);
-            long endTime = System.currentTimeMillis();
-
-            System.out.println("Elapsed time = " + (endTime - startTime));
-            System.out.println();
         }
 
     }
 
     public static class SelectionSortingTest implements Command {
         public void execute(Object data) {
-            int random_num = (int) data;
-
-            int[] array = ranPong(random_num);
-            System.out.println("SelectionSort : " + random_num);
-
-            long startTime = System.currentTimeMillis();
-            SelectionSorting.selectionSort(array);
-            long endTime = System.currentTimeMillis();
-
-            System.out.println("Elapsed time = " + (endTime - startTime));
-            System.out.println();
+            
+            SelectionSorting.selectionSort((int[]) data);
+           
         }
 
     }
 
     public static class InsertionSortingTest implements Command {
         public void execute(Object data) {
-            int random_num = (int) data;
-
-            int[] array = ranPong(random_num);
-            System.out.println("insertionSort : " + random_num);
-
-            long startTime = System.currentTimeMillis();
-            SelectionSorting.selectionSort(array);
-            long endTime = System.currentTimeMillis();
-
-            System.out.println("Elapsed time = " + (endTime - startTime));
-            System.out.println();
+            
+            SelectionSorting.selectionSort((int[]) data);
+            
         }
 
     }
 
     public static class QuickSortTest implements Command {
         public void execute(Object data) {
-            int random_num = (int) data;
 
-            int[] array = ranPong(random_num);
-            System.out.println("QuickSort : " + random_num);
+            int[] arrray = (int[]) data;
+            QuickSort.qSort(arrray ,0, arrray.length - 1);
 
-            long startTime = System.currentTimeMillis();
-            QuickSort.qSort(array, 0, array.length - 1);
-            long endTime = System.currentTimeMillis();
-
-            System.out.println("Elapsed time = " + (endTime - startTime));
-            System.out.println();
         }
 
     }
 
-
     public static void main(String... args) {
-        loopNgoNgo(new BubbleSortingTest());
-        loopNgoNgo(new SelectionSortingTest());
-        loopNgoNgo(new InsertionSortingTest());
-        loopNgoNgo(new QuickSortTest());
+        loopNgoNgo(new BubbleSortingTest(), "BubbleSort");
+        loopNgoNgo(new SelectionSortingTest(), "SelectionSort");
+        loopNgoNgo(new InsertionSortingTest(), "InsertionSort");
+        loopNgoNgo(new QuickSortTest(), "QuickSort");
         System.out.println("This is the end");
     }
 }
