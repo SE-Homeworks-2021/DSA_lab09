@@ -70,18 +70,18 @@ public class TestingEZ {
 
     public static class SelectionSortingTest implements Command {
         public void execute(Object data) {
-            
+
             SelectionSorting.selectionSort((int[]) data);
-           
+
         }
 
     }
 
     public static class InsertionSortingTest implements Command {
         public void execute(Object data) {
-            
-            SelectionSorting.selectionSort((int[]) data);
-            
+
+            InsertionSorting.insertionSort((int[]) data);
+
         }
 
     }
@@ -97,10 +97,10 @@ public class TestingEZ {
     }
 
     public static void main(String... args) {
-        loopNgoNgo(new BubbleSortingTest(), "BubbleSort");
-        loopNgoNgo(new SelectionSortingTest(), "SelectionSort");
+//        loopNgoNgo(new BubbleSortingTest(), "BubbleSort");
+//        loopNgoNgo(new SelectionSortingTest(), "SelectionSort");
         loopNgoNgo(new InsertionSortingTest(), "InsertionSort");
-        loopNgoNgo(new QuickSortTest(), "QuickSort");
+//        loopNgoNgo(new QuickSortTest(), "QuickSort");
         System.out.println("This is the end");
     }
 }
